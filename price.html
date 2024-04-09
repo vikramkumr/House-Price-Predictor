@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Price Detector</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2>House Price Detector</h2>
+    <form id="housePriceForm">
+        <label for="size">Size (in square feet):</label>
+        <input type="text" id="size" name="size" required>
+
+        <label for="bedrooms">Number of Bedrooms:</label>
+        <input type="text" id="bedrooms" name="bedrooms" required>
+
+        <label for="bathrooms">Number of Bathrooms:</label>
+        <input type="text" id="bathrooms" name="bathrooms" required>
+
+        <label for="age">Age of the House (in years):</label>
+        <input type="text" id="age" name="age" required>
+
+        <button type="button" onclick="calculatePrice()">Calculate Price</button>
+    </form>
+
+    <div class="result" id="priceResult"></div>
+
+    <script>
+        function calculatePrice() {
+            var size = parseFloat(document.getElementById('size').value);
+            var bedrooms = parseInt(document.getElementById('bedrooms').value);
+            var bathrooms = parseInt(document.getElementById('bathrooms').value);
+            var age = parseInt(document.getElementById('age').value);
+
+            // Perform your calculation here (e.g., using a formula or machine learning model)
+
+            // For demonstration purposes, a simple calculation is performed here
+            var basePrice = 100; // Base price per square foot
+            var additionalBedroomPrice = 5000; // Additional price per bedroom
+            var additionalBathroomPrice = 3000; // Additional price per bathroom
+            var ageDepreciationRate = 0.02; // Depreciation rate per year
+
+            var price = basePrice * size +
+                        additionalBedroomPrice * bedrooms +
+                        additionalBathroomPrice * bathrooms -
+                        age * basePrice * ageDepreciationRate;
+
+            document.getElementById('priceResult').innerHTML = "Estimated Price: $" + price.toFixed(2);
+        }
+    </script>
+</body>
+</html>
